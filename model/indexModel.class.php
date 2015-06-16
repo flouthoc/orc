@@ -2,6 +2,6 @@
 
 class indexModel{
 
-	public $welcome = "woah";
+	public $welcome = "orc";
 }
 ?>
