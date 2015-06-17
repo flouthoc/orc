@@ -1,5 +1,7 @@
 <?php
 
+/
+
 abstract class baseController{
 
 	protected $registry;
@@ -10,6 +12,8 @@ abstract class baseController{
 
 		$this->registry = $registry;
 	}
+
+	/* Sets the model attribute to this current instance */
 
 	function setModel($model){
 		

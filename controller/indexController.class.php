@@ -9,6 +9,17 @@ Class indexController Extends baseController {
         $this->registry->template->show('index');
 	}
 
+
+	/* A test function to check weather we can recieve arguments via url or not */
+
+
+	public function poop($array){
+
+
+		var_dump($array);
+
+	}
+
 }
 
 ?>

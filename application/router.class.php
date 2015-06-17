@@ -18,6 +18,10 @@ class router{
 
     public $fileName;
 
+    public $argumentarray = array();
+
+    public $argumentbuffer = array();
+
 	function __construct($registry){
 
 		$this->registry = $registry;
@@ -52,9 +56,13 @@ class router{
 
         /*** a new controller class instance ***/
         /** add MODEL associated to that controller **/
-        
+
         $modelclass = $this->controller .'Model';
         $class = $this->controller .'Controller';
+
+        /*** create Model Instance **/
+
+
         $model = new $modelclass($this->registry);
         $controller = new $class($this->registry,$model);
         $controller->setModel($model);
@@ -68,8 +76,11 @@ class router{
         {
                 $action = $this->action;
         }
+
+        /*** Check if there is some arguments for action ***/
         /*** run the action ***/
-        $controller->$action();
+
+        $controller->$action($this->argumentarray);
  	}
 
  	
@@ -91,6 +102,20 @@ class router{
                 if(isset( $parts[1]))
                 {
                         $this->action = $parts[1];
+                }
+
+                /* Setting array offset to pass arguments to action or controller */
+                $i = 2;
+                /* init new array counter */
+                $j = 0;
+
+                while($i < count($parts)){
+
+                    $this->argumentarray[$j] = $parts[$i];
+                    //increase array counter
+                    $i++;
+                    $j++;
+
                 }
         }
 

@@ -1,5 +1,7 @@
 <?php 
 
+/** Responsible for initialisng views and template variables in the runtime. **/ 
+
 class template{
 
 	private $registry;

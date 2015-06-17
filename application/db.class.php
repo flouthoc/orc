@@ -1,5 +1,8 @@
 <?php
 
+/* Class to initiate DB connection and setting up instance of query handler */
+
+
 class db{
 
 	private $handle;

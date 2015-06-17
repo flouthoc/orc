@@ -1,5 +1,10 @@
 <?php
 
+/*** registry.php - a global value holder 
+		instead of making global vars throughout the framework we'd prefer using 
+		a instance holder which'll transfer variables which are supposed to global
+		from one instance to other ***/
+
 class registry{
 
 	private $vars = array();

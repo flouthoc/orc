@@ -12,8 +12,12 @@
 
 	/*load router */
 
+
 	$registry->db = new db("mysql", $configHost, $configUser, $configPasswd, $configDB);
+
 	/*** set the path to the controllers directory ***/
+	/*passing registry to router so that router can access all the assumed global vars */
+
 	$registry->router = new router($registry);
 	$registry->router->setPath (__SITE_PATH . '/controller');
 
