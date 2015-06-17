@@ -12,6 +12,8 @@
 
 class indexModel{
 
-	public $welcome = "orc v1.0";
+
+	public $welcome = "orc";
+
 }
 ?>
