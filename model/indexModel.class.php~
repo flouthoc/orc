@@ -12,7 +12,10 @@
 
 class indexModel{
 
+<<<<<<< HEAD
 	public $welcome = "orc v1.0";
+=======
+	public $welcome = "orc";
+>>>>>>> ea078d14279a0d5d90bbd1a293be1ec3338dfb13
 }
-
 ?>
