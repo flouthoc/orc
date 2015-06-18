@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>Orc - A micro MVC framework</title>
+	<meta name="description" content="MinimalCSS is a simple HTML / CSS template that is incredibly easy to customize. It can be downloaded and used with no limitations or obligations.">
+
+	<link href="minimal.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/php.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+	<a href="https://github.com/flouthoc/orc">
+        <img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png">
+      </a>
+<div class="container">
+	<header>
+		<h1>Orc.</h1>A PHP based <strong>micro MVC</strong> framework.MIT Lisence
+		<nav class="float-right">
+			<ul>
+				<li>
+        <iframe src="http://ghbtns.com/github-btn.html?user=flouthoc&type=follow" height="30" width="100" frameborder="0" scrolling="0" style="width:168px; height: 30px;" allowTransparency="true"></iframe><iframe src="http://ghbtns.com/github-btn.html?user=flouthoc&repo=orc&type=watch" height="30" width="70" frameborder="0" scrolling="0" style="width:70px; height: 30px;" allowTransparency="true"></iframe><iframe src="http://ghbtns.com/github-btn.html?user=flouthoc&repo=orc&type=fork" height="30" width="70" frameborder="0" scrolling="0" style="width:70px; height: 30px;" allowTransparency="true"></iframe></p></li>
+			</ul>
+		</nav>
+	</header>
+
+
+	<div class="row">
+		<div class="col-12">
+		<div class="row">
+			<h1>Installing</h1>
+				<div class="row">
+					<strong>Orc</strong> can be used directly by simply putting the bundle in your <strong>www</strong>
+					, however there is requirement of <strong>mod_rewrite Apache module</strong>.
+				</div>
+				<div class="row">
+					<h3>Downloading</h3>
+					<p>
+						<pre>
+							<code>git clone https://github.com/flouthoc/orc.git</code>
+						</pre>
+						Simply clone the latest Orc from github repository
+					</p>
+
+				</div>
+				<div class="row">
+					<h3>Supported Database Systems</h3>
+					<p>
+						By default system supports php handle for <strong>mysqli</strong> but every possible database system can be added to Orc by creating a <strong>OO handle</strong> for respective Database system in <strong> ../application/db.class.php</strong>,<strong> it would be great if you'll put handle for your DB engine here.</strong>
+					</p>
+
+				</div>
+
+		</div>
+		</div>
+	</div>
+
+
+		<!-- Block End -->
+		<hr>
+		<!-- Block Start -->
+
+
+		<div class="row">
+			<div class="col-12">
+				<div class="row">
+					<h1>Understanding Orc</h1>
+				</div>
+				<div class="row">
+					<h4>Conceptually</h4>
+					<a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC Wikipedia</a>
+				</div>
+				<div clss="row">
+					<h4>Implementaion and code</h4>
+					Most of the working concept of Orc is quit analoguous to <strong>CodeIgniter Web Framework</strong>.
+					A basic layout is totally from <strong><a href="http://www.phpro.org/tutorials/Model-View-Controller-MVC.html">Kevin Waterson's MVC tutorial</a></strong> and I'll try to discuss concept behind all new code in comments and documentation.
+				</div>
+
+			</div>
+		</div>
+
+		<!-- Block End -->
+		<hr>
+		<!-- Block Start -->
+
+		<div class="row">
+			<div class="col-12">
+				<div class="row">
+					<h1>Documentation</h1>
+				</div>
+				<div class="row">
+					<h4>Url Routing</h4>
+						Url Routing is integral part of framework , to make it work as a <strong>Single Entry point MVC</strong>
+						and route the content throught the controller and models a router is essential to grasp which controller is requested ? , which action is called ? What are the arguments given to action ?.All the code related to routing is written inside <strong>../application/router.class.php</strong> and it goes like this.
+						<br><br>
+						<Strong>Url in raw form</Strong>
+						<pre>
+							<code>http://domain.com/controller.php?rt=action/there/goes/arguments/</code>
+						</pre>
+						<ul>
+							<li>
+								<strong>controller.php</strong> - Points to the controller class which extends Base Controller
+							</li>
+
+							<li>
+								<strong>action</strong> - action is method inside controllerclass which accepts arguments to be processed by <strong>Model</strong> or <strong>Controller</strong> itself.
+							</li>
+
+							<li>
+								<strong>arguments</strong> - after supplying arguments behind the wheel it looks like this $controller->action($argument_array); now you can process the given input
+							</li>
+
+						</ul>
+
+						<u><Strong>Shazam!!! now mod_rewrite plays with it and it can look like this</Strong></u>
+
+							<pre>
+								<code>http://domain.com/controller/action/there/goes/arguments/</code>
+							</pre>
+				</div>
+				<div class="row">
+					<strong><u><h2>Controllers and Custom Controllers</h2></u></strong>
+					<h4>Controllers</h4>
+					<p>
+						Major Part of the framework will be constructed of controllers and custom controllers.<strong>Controllers</strong>
+						are something which are responsible for taking response from <strong>User</strong> and processing them accordingly to give <strong>Model</strong> appropriate data to process the <strong>Bussiness Logic</strong> from there the Data is retrived by <strong>Views</strong> and that's how the cycle rolls.
+					</p>
+					<p>
+						Controllers calls the Model by using some of the methods , we are going to call them <strong>actions</strong>.
+						Each Controller have many <strong>actions</strong> to proceed giving arguments to be processed by Model.So we can assume action like this.
+						<pre>
+							<code class="php">/**This is not how i'll look in code , this is just to give you rough image **/
+$controllerInstance->action($argumentarray);
+/** similarly action() makes a call to model **/</code>
+						</pre></p>
+
+					<h4>Custom Controllers</h4>
+					Every custom controller must be saved in <strong>/controller/</strong> and should extend or inherit <strong>../application/controllerBase.class.php</strong> every controller must contain a action </strong>index</strong> which will be called if in argument no controller has been given.<br><Strong>Example</Strong>
+
+					<pre><code class="php">Class indexController Extends baseController {
+
+	public function index() {
+		/*** set a template variable ***/
+        $this->registry->template->welcome = $this->model->welcome;
+
+		/*** load the index template and get file from VIEW ***/
+        $this->registry->template->show('index');
+	}
+
+
+	/* A test function to check weather we can recieve arguments via url or not */
+
+	public function poop($array){
+
+		var_dump($array);
+
+	}
+
+	public function some_random_action_which_calls_model($argumentarray){
+
+		/** Do some random operation on welcome by taking argument **/
+		$this->model->somemethod($argumentarray);
+
+		$this->registry->template->welcome = $this->model->welcome;
+
+		/*** load the index template and get file from VIEW ***/
+        	$this->registry->template->show('index');
+	}
+
+}</code></pre></p>
+</div>
+
+	<div class="row">
+					<strong><u><h2>Views</h2></u></strong>
+					<h4>Templates</h4>
+					<p>
+						Views are basically a HTML skeleton , or HTML layout which can contain PHP based template variables to load <strong>dynamic content</strong> inside these variables and these variables must be attribute of <strong>instance of template class which is to be stored in $registry (object of registry class) and these Template Variables can be manipulated in any action of the respective controller of View.</strong> 
+					</p>
+					<pre><code>&#x3C;html&#x3E;
+
+&#x9;&#x3C;head&#x3E;
+&#x9;&#x3C;/head&#x3E;
+
+&#x9;&#x3C;body&#x3E;
+&#x9;&#x9;&#x3C;h1&#x3E;&#x3C;?php echo $welcome; ?&#x3E;&#x3C;/h1&#x3E;
+&#x9;&#x9;&#x3C;p&#x3E;&#x3C;?php echo $blogContent ?&#x3E;&#x3C;/p&#x3E;
+&#x9;&#x3C;/body&#x3E;
+
+&#x3C;/html&#x3E;  </code>
+					<strong>Using Template Variables with custom Controllers</strong>
+									<pre><code>
+Class indexController Extends baseController {
+
+	public function index() {
+
+		/*** setting template variables a template variables ***/
+
+        $this->registry->template->welcome = "Welcome User";
+        $this->registry->template->blogContent = "Here goes your blog content";
+
+		/*** load the index template or name of view ***/
+
+        $this->registry->template->show('index');
+	}
+
+
+}
+</code>
+
+					</div>
+	<div class="row">
+					<strong><u><h2>Models</h2></u></strong>
+					<p>
+						Models are something which contain <strong>Business Logic</strong> and it is to be noted that every can only be called from <strong>controller of that model</strong>. Model can contain many methods and these methods can take argument from Controller methods and can update the <strong> template variables </strong> further. Every model must be stored in <strong>../model/</strong> with name convention like this <u><strong>'name'Model.class.php</strong></u>
+					</p>
+					<pre><code>class indexModel{
+
+	public $welcome = "Welcome to blog";
+	public $blogContent;
+
+	public getBlogContent(){
+
+		$this->blogContent = make_database_call();
+	}
+}</code>
+
+
+					</div>
+
+	<div class="row">
+					<strong><u><h2>Using Database with Models</h2></u></strong>
+					<p>
+						Inside <strong>../application/</strong> there is a class named <strong>db.class.php</strong> you can use object of this class to get the <strong>mysqli</strong> handle you can use it like this.
+					</p>
+					<pre><code>$dbinstance = new db("mysql","host","user","passwd","database");
+
+/*Now you can use $handle attribute of this object to call mysqli method*/
+$dbinstance->handle->query("SELECT * FROM foo");
+
+/*you can also store this inside registry so that you can get this upto MODEL*/
+$registry->db = $dbinstance;
+</code>
+
+
+					</div>
+	<div class="row">
+					<strong><u><h1>Contributing - ToDo's</h1></u></strong>
+					
+						<ul>
+							<li>Add your database handler to application/db.class.php</li>
+							<li>Add a test directory with test cases inside</li>
+							<li>Improve Docs</li>
+							<li>Add plugins</li>
+						</ul>
+					
+
+
+					</div>
+
+		<div class="row">
+					<strong><u><h1>Fork it / Create Pull</h1></u></strong>
+					
+						<u><a href="https://github.com/flouthoc/orc">Github - Link</a></u><br>
+						Email - <strong>flouthoc@gmail.com</strong>
+					
+
+
+					</div>
+
+
+
+
+
+
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+</div>
+</body>
+</html>
