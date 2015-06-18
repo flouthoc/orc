@@ -4,6 +4,6 @@ Orc is a PHP based micro MVC framework with minimal driving content inside it.Mo
 <h1>Docs</h1>
 You can find docs here .However it is still under construction
 
-<h1>MIT Lisence</h1>
+<h1>MIT License</h1>
 Orc is under MIT Lisence so no worries use it according to your use.
 <strong>Fork it!</strong>
